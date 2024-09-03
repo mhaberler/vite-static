@@ -1,26 +1,20 @@
 import './App.css'
 import Map from './Map';
-import DateTime  from './DateTime';
+import DateTime from './DateTime';
 // DateContext
 function App() {
 
   return (
     <>
-      {/* <h1>react-leaflet-pwa</h1> */}
+      <h1>heidiware picker</h1>
 
       <div className="Map">
         <Map />
       </div>
-      {/* <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div> */}
+
       <div className="timepicker">
-      <DateTime />
+        <DateTime />
       </div>
-
-
     </>
   )
 }

@@ -12,11 +12,13 @@ const DateTimeSlider = () => {
     const endTime = addHours(startTime, 24 * maxDays);
 
     return (
-
-        <div style={{ width: '80vh', height: '90vw', margin: 20 }}>
+        <div>
+            <div>
+                Selected Date & Time: {format(selectedDate, 'MMMM d, yyyy h:mm aa')}
+            </div>
             <DatePicker
                 selected={selectedDate}
-                onChange={(date : any) => {
+                onChange={(date: any) => {
                     if (date !== null) {
                         setSelectedDate(date);
                     }
@@ -30,9 +32,7 @@ const DateTimeSlider = () => {
                 minDate={startTime}
                 maxDate={endTime}
             />
-            <div>
-                Selected Date & Time: {format(selectedDate, 'MMMM d, yyyy h:mm aa')}
-            </div>
+
         </div>
 
     );

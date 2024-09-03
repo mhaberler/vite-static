@@ -35,12 +35,11 @@ const Map = () => {
   // @ts-ignore
   const [position, setPosition] = useState(null);
   return (
-    <MapContainer className="mapcont" center={[47, 15]} zoom={13} style={{ height: '40vh', width: '90vw' }}>
-      <TileLayer
+    <MapContainer className="mapcont" center={[47, 15]} zoom={13} >
+    <TileLayer
         attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* <Marker position={position}></Marker> */}
       <LocateControl metric
         setView='always'
         flyTo={true}
