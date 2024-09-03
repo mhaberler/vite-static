@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { format, addHours } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -6,21 +6,22 @@ import 'react-datepicker/dist/react-datepicker.css';
 const maxDays = 14;
 
 const DateTimeSlider = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
     const startTime = new Date(); // Now
     const endTime = addHours(startTime, 24 * maxDays);
 
-    const totalHours = (endTime - startTime) / 3600000;
-
     return (
 
-        <div style={{ width: '80vh', width: '90vw', margin: 20 }}>
+        <div style={{ width: '80vh', height: '90vw', margin: 20 }}>
             <DatePicker
                 selected={selectedDate}
-                onChange={(date) => {
+                onChange={(date : any) => {
+                    if (date !== null) {
+                        setSelectedDate(date);
+                    }
                     setSelectedDate(date);
-                    console.log('setSelectedDate', date.getTime()) // unix timestamp
+                    console.log('setSelectedDate', date?.getTime()) // unix timestamp
                 }}
                 showTimeSelect
                 timeFormat="HH:mm"

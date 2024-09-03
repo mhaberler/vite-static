@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import './App.css'
 import Map from './Map';
 import DateTime  from './DateTime';
 // DateContext
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
