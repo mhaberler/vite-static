@@ -9,7 +9,7 @@
     "deploy-mah": "tsc &&  vite build --base=/apps/$npm_package_name/ && rsync -avz --delete dist/ mah@mah.priv.at:/var/www/static.mah.priv.at/apps/$npm_package_name/ && echo visit https://static.mah.priv.at/apps/$npm_package_name",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "name" : "echo     $npm_package_name"
+    "name": "echo     $npm_package_name"
   },
   "dependencies": {
     "@turtlesocks/react-leaflet.locatecontrol": "^0.1.1",
@@ -18,6 +18,7 @@
     "leaflet": "^1.9.4",
     "leaflet.locatecontrol": "^0.81.1",
     "notyf": "^3.10.0",
+    "openmeteo": "^1.1.4",
     "react": "^18.3.1",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",

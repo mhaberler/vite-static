@@ -49,7 +49,7 @@ function LocationMarker({ setPosition }: any) {
 
 const Map: React.FC<MapProps> = ({ position, setPosition }) => {
   return (
-    <MapContainer className="mapcont" center={position} zoom={13} >
+    <MapContainer className="mapcont" center={position} zoom={7} >
       <TileLayer
         attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
