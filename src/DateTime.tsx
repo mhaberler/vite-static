@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import { format, addHours } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+// import { useContext} from 'react';
+
+// import DateTimeContext from './DateTimeContext';
+
+
 const maxDays = 14;
 
+
 const DateTimeSlider = () => {
+
+    // const { dateTime, setDateTime }  = useContext(DateTimeContext);
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
     const startTime = new Date(); // Now
