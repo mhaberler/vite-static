@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import PWABadge from './PWABadge.tsx'
 import './App.css'
 import Map from './Map';
 
@@ -18,7 +17,6 @@ function App() {
           count is {count}
         </button>
       </div>
-      <PWABadge />
     </>
   )
 }
