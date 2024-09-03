@@ -5,11 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css'
 import { useMapEvent, useMapEvents } from 'react-leaflet';
 
-// import './Map.css'
-// import { LatLngLiteral } from 'leaflet'
-// import NotyfContext from './NotyfContext';
-// import { Notyf } from 'notyf';
-
 const defaultPosition = [47, 15]
 
 function LocationMarker({ setPosition }) {
@@ -24,7 +19,7 @@ function LocationMarker({ setPosition }) {
 
   })
 
-  useMapEvent('locationfound', (e) => {
+  const m = useMapEvent('locationfound', (e) => {
     const { lat, lng } = e.latlng;
     console.log('locationfound', lat + ', ' + lng);
     setMarkerPosition(e.latlng);
@@ -38,9 +33,7 @@ function LocationMarker({ setPosition }) {
 
 
 const Map = () => {
-
   const [position, setPosition] = useState(null);
-
   return (
     <MapContainer className="mapcont" center={[47, 15]} zoom={13} style={{ height: '40vh', width: '90vw' }}>
       <TileLayer
