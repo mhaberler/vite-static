@@ -8,7 +8,8 @@ import { fetchData, fetchOpenMeteo } from './fetch';
 // import { fetchWeatherApi } from 'openmeteo';
 
 
-const levels = ["1000hPa",
+const levels = [
+  "1000hPa",
   "975hPa",
   "950hPa",
   "925hPa",
@@ -28,13 +29,14 @@ const levels = ["1000hPa",
   // "50hPa",
   // "30hPa"
 ]
-const values = ["temperature",
+const values = [
+  "temperature",
   "relative_humidity",
   "cloud_cover",
   "wind_speed",
   "wind_direction",
   // "geopotential_height"
-] 
+]
 
 function App() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -45,17 +47,29 @@ function App() {
     if (position && selectedDate) {
 
       const params = {
+        "timezone": "auto",
         "forecast_days": 1,
+        "forecast_hours": 6,
         "latitude": position.lat,
         "longitude": position.lng,
-        "hourly": values.map((v) => levels.map((l) => v + "_" + l)).flat()
+         "hourly": values.map((v) => levels.map((l) => v + "_" + l)).flat().join(',')
       };
-      const url = "https://api.open-meteo.com/v1/forecast";
-      fetchOpenMeteo(
+      const plist = new URLSearchParams(params).toString();
+      console.log(plist);
+      const url = "https://api.open-meteo.com/v1/forecast?" + plist // + "&hourly=" + values.map((v) => levels.map((l) => v + "_" + l)).flat().join(',')
+      // const url  = `https://api.open-meteo.com/v1/forecast?latitude=${position.lat}&longitude=${position.lng}&current=surface_pressure,temperature_2m,wind_speed_10m,weather_code,cloud_cover,relative_humidity_2m,is_day&hourly=temperature_2m&forecast_days=1`;
+
+
+      fetchData(
         url,
-        params,
         setWeatherData
       );
+
+      // fetchOpenMeteo(
+      //   url,
+      //   params,
+      //   setWeatherData
+      // );
       console.log(weatherData);
     }
 
