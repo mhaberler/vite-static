@@ -4,9 +4,7 @@ import DateTime from './DateTime';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { LatLng } from 'leaflet';
-import { fetchData, fetchOpenMeteo } from './fetch';
-// import { fetchWeatherApi } from 'openmeteo';
-
+import { fetchData } from './fetch';
 
 const levels = [
   "1000hPa",
@@ -38,39 +36,38 @@ const values = [
   // "geopotential_height"
 ]
 
+
+
 function App() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [position, setPosition] = useState<LatLng>(new LatLng(47, 15));
   const [weatherData, setWeatherData] = useState({});
 
+  // useEffect(() => {
+  // const { fetchWeatherApi } = await import("openmeteo");
+
+  // }, []);
+
   useEffect(() => {
     if (position && selectedDate) {
 
       const params = {
-        "timezone": "auto",
+        // "models": ["ecmwf_ifs04", "ecmwf_ifs025", "ecmwf_aifs025", "gfs_global", "icon_seamless", "icon_global", "icon_eu", "icon_d2", "meteofrance_arpege_world", "meteofrance_arome_france"],
+        "models": ["icon_d2"],
+        "timezone": "GMT",
         "forecast_days": 1,
         "forecast_hours": 6,
         "latitude": position.lat,
         "longitude": position.lng,
-         "hourly": values.map((v) => levels.map((l) => v + "_" + l)).flat().join(',')
+        "hourly": values.map((v) => levels.map((l) => v + "_" + l)).flat().join(',')
       };
       const plist = new URLSearchParams(params).toString();
-      console.log(plist);
-      const url = "https://api.open-meteo.com/v1/forecast?" + plist // + "&hourly=" + values.map((v) => levels.map((l) => v + "_" + l)).flat().join(',')
-      // const url  = `https://api.open-meteo.com/v1/forecast?latitude=${position.lat}&longitude=${position.lng}&current=surface_pressure,temperature_2m,wind_speed_10m,weather_code,cloud_cover,relative_humidity_2m,is_day&hourly=temperature_2m&forecast_days=1`;
-
-
+      const url = "https://api.open-meteo.com/v1/forecast?" + plist;
       fetchData(
         url,
         setWeatherData
       );
-
-      // fetchOpenMeteo(
-      //   url,
-      //   params,
-      //   setWeatherData
-      // );
-      console.log(weatherData);
+      console.log(url, weatherData);
     }
 
   }, [position, selectedDate]);
